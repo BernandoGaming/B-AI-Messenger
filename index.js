@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 
 function bernando() {
-  const child = spawn("node B-AI.js", {
+  const child = spawn("node bot.js", {
     cwd: __dirname,
     stdio: "inherit",
     shell: true
