@@ -1,22 +1,23 @@
-let hadi = {};
-function kuldown(id, cmd, cd) {
-    if (jeda(id, cmd, cd)) {
-        if (!hadi[id]) {
-            hadi[id] = {};
+let cooldowns = {};
+
+function setCooldown(id, cmd, cd) {
+    if (isCooldownExpired(id, cmd, cd)) {
+        if (!cooldowns[id]) {
+            cooldowns[id] = {};
         }
-        hadi[id][cmd] = Date.now();
-        return "hadi";
+        cooldowns[id][cmd] = Date.now();
+        return "cooldown set";
     } else {
-        return "pipi";
+        return "cooldown active";
     }
 }
 
-function jeda(id, cmd, cd) {
-    if (!hadi[id] || !hadi[id][cmd]) {
+function isCooldownExpired(id, cmd, cd) {
+    if (!cooldowns[id] || !cooldowns[id][cmd]) {
         return true;
     }
-    const timePassed = (Date.now() - hadi[id][cmd]) / 1000; 
+    const timePassed = (Date.now() - cooldowns[id][cmd]) / 1000;
     return timePassed >= cd;
 }
 
-module.exports = { kuldown };
+module.exports = { setCooldown };
