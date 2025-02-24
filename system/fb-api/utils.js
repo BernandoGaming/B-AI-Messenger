@@ -1,5 +1,3 @@
-
-
 "use strict";
 
 let request = promisifyPromise(require("request").defaults({ jar: true, proxy: process.env.FB_PROXY }));
