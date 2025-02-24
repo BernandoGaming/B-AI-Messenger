@@ -1,4 +1,4 @@
-![ahh gatau](https://raw.githubusercontent.com/HadyZen/Ayanokoji-Kiyotaka/refs/heads/main/hady-zen/kiyotaka/.png) 
+![](https://raw.githubusercontent.com/HadyZen/Ayanokoji-Kiyotaka/refs/heads/main/hady-zen/kiyotaka/.png) 
 
 <h1 align="center">B-AI 🜲</h1>
 
@@ -10,7 +10,7 @@
  
 
 
-## 𝗧𝗨𝗧𝗢𝗥𝗜𝗔𝗟 🜲
+## 𝗧𝗨𝗧𝗢𝗥𝗜𝗔𝗟 
 
 1. Unduh kiwi browser di playstore <br>
 2. Buka url dibawah ini di kiwi browser <br>
