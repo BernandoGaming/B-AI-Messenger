@@ -1,4 +1,4 @@
-/* HADY ZEN'IN */
+
 
 "use strict";
 
