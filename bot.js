@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const login = require('./system/auth');
-const { logo, colors, fonts, bernando } = require('./system/log');
+const { logo, colors, fonts, bai } = require('./system/log');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -19,7 +19,7 @@ process.on('unhandledRejection', error => console.log(logo.error + error));
 process.on('uncaughtException', error => console.log(logo.error + error));
 
 const proxyConfig = { host: proxy, port: port };
-const banner = gradient("#ADD8E6", "#4682B4", "#00008B")(logo.bernando);
+const banner = gradient("#ADD8E6", "#4682B4", "#00008B")(logo.bai);
 const currentDate = now.format('YYYY-MM-DD');
 const currentTime = now.format('HH:mm:ss');
 const web = `https://${process.env.PROJECT_DOMAIN}.glitch.me`;
@@ -55,7 +55,7 @@ if (fs.existsSync(path.join('system', 'database.db'))) {
 function addUser(id) {
   if (!database[id]) {
     database[id] = { "name": "New User", "currency": 0, "exp": 0, "level": 1, "daily": null };
-    console.log(bernando('database') + `${id} new user.`);
+    console.log(bai('database') + `${id} new user.`);
     saveDatabase();
   }
 }
@@ -64,13 +64,13 @@ function updateUser(id, key, value) {
   if (["name", "daily"].includes(key)) {
     database[id][key] = value;
     saveDatabase();
-    console.log(bernando('database') + 'Update completed.');
+    console.log(bai('database') + 'Update completed.');
   } else if (["currency", "exp", "level"].includes(key) && typeof value === 'number') {
     database[id][key] = value;
     saveDatabase();
-    console.log(bernando('database') + 'Update completed.');
+    console.log(bai('database') + 'Update completed.');
   } else {
-    console.log(bernando('database') + 'Value for ' + key + ' must be a number.');
+    console.log(bai('database') + 'Value for ' + key + ' must be a number.');
   }
 }
 
@@ -106,22 +106,22 @@ cron.schedule('0 */4 * * *', () => {
   });
   child.on('exit', (code) => {
     if (code === 0) {
-      console.log(bernando('restart') + botName + ' restarted successfully.');
+      console.log(bai('restart') + botName + ' restarted successfully.');
     } else {
       console.log(logo.error + botName + ' failed to restart: ', code);
     }
   });
 });
 
-console.log(bernando('version') + `${version}.`);
-console.log(bernando('prefix') + `${prefix}`);
-console.log(bernando('language') + `${lang}.`);
-console.log(bernando('admin') + `${admin}.`);
-console.log(bernando('webview') + `${web}.`);
+console.log(bai('version') + `${version}.`);
+console.log(bai('prefix') + `${prefix}`);
+console.log(bai('language') + `${lang}.`);
+console.log(bai('admin') + `${admin}.`);
+console.log(bai('webview') + `${web}.`);
 
 fs.readdir('./commands', (err, files) => { 
   const commandList = files.map(file => path.parse(file).name);
-  console.log(bernando('commands') + `${commandList}.`);
+  console.log(bai('commands') + `${commandList}.`);
 });
 
 if (!account || account.length < 0 || !JSON.parse(account)) {
