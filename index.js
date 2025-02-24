@@ -1,6 +1,6 @@
 const { spawn } = require('child_process');
 
-function bernando() {
+function startBot() {
   const child = spawn("node bot.js", {
     cwd: __dirname,
     stdio: "inherit",
@@ -9,8 +9,8 @@ function bernando() {
 
   child.on("close", (code) => {
     if (code == 2) {
-      bernando(); 
+      startBot(); 
   }
  });
-};
-bernando();
+}
+startBot();
