@@ -119,9 +119,9 @@ console.log(bai('language') + `${lang}.`);
 console.log(bai('admin') + `${admin}.`);
 console.log(bai('webview') + `${web}.`);
 
-fs.readdir('./commands', (err, files) => { 
+fs.readdir('./system/cmds', (err, files) => { 
   const commandList = files.map(file => path.parse(file).name);
-  console.log(bai('commands') + `${commandList}.`);
+  console.log(bai('cmds') + `${commandList}.`);
 });
 
 if (!account || account.length < 0 || !JSON.parse(account)) {
@@ -147,10 +147,10 @@ login({ appState: JSON.parse(account, proxyConfig) }, settings, (err, api) => {
     if (!body || global.BotConfig.maintenance === true && !admin.includes(event.senderID) || chatdm === false && event.isGroup === false && !admin.includes(event.senderID)) return; 
     
     addUser(event.senderID);
-    if (body.toLowerCase() === "prefix") return api.sendMessage(`⚡ Prefix ${botName}: ${prefix}`, event.threadID, event.messageID);
+    if (body.toLowerCase() === "prefix") return api.sendMessage(`Prefix ${botName}: ${prefix}`, event.threadID, event.messageID);
     if (!body.startsWith(prefix)) return console.log(logo.message + `${event.senderID} > ${body}`);
     
-    const command = body.slice(prefix.length).trim().split(/ +/g).shift().toLowerCase();
+    const cmd = body.slice(prefix.length).trim().split(/ +/g).shift().toLowerCase();
 
     async function executeCommand(cmd, api, event) {
       const argsString = body?.replace(`${prefix}${cmd}`, "")?.trim();
@@ -163,10 +163,10 @@ login({ appState: JSON.parse(account, proxyConfig) }, settings, (err, api) => {
           }); 
         });
         const threadAdmins = threadInfo.adminIDs.map(admin => admin.id);
-        const files = fs.readdirSync(path.join(__dirname, '/commands'));
+        const files = fs.readdirSync(path.join(__dirname, '/system/cmds'));
         for (const file of files) {
           if (file.endsWith('.js')) {
-            const commandPath = path.join(path.join(__dirname, '/commands'), file);
+            const commandPath = path.join(path.join(__dirname, '/system/cmds'), file);
             const { commandInfo, execute, translations } = require(commandPath);
 
             if (commandInfo && commandInfo.name === cmd && typeof execute === 'function') {
@@ -191,7 +191,7 @@ login({ appState: JSON.parse(account, proxyConfig) }, settings, (err, api) => {
         console.log(logo.error + 'Command error: ' + error.message);
       }
     }
-    executeCommand(command, api, event);
+    executeCommand(cmd, api, event);
   });
 });
 
