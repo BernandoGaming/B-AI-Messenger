@@ -14,33 +14,26 @@ const allowedProperties = {
 	location: true
 };
 
-function removeSpecialChar(inputString) { // remove char banned by facebook
+function removeSpecialChar(inputString) { 
 	if (typeof inputString !== "string")
 		return inputString;
-	// Convert string to Buffer
 	const buffer = Buffer.from(inputString, 'utf8');
-
-	// Filter buffer start with ef b8 8f
 	let filteredBuffer = Buffer.alloc(0);
 	for (let i = 0; i < buffer.length; i++) {
 		if (buffer[i] === 0xEF && buffer[i + 1] === 0xB8 && buffer[i + 2] === 0x8F) {
-			i += 2; // Skip 3 bytes of buffer starting with ef b8 8f
+			i += 2;
 		} else {
 			filteredBuffer = Buffer.concat([filteredBuffer, buffer.slice(i, i + 1)]);
 		}
 	}
 
-	// Convert filtered buffer to string
 	const convertedString = filteredBuffer.toString('utf8');
-
 	return convertedString;
 }
 
 module.exports = function (defaultFuncs, api, ctx) {
 	function uploadAttachment(attachments, callback) {
 		const uploads = [];
-
-		// create an array of promises
 		for (let i = 0; i < attachments.length; i++) {
 			if (!utils.isReadableStream(attachments[i])) {
 				throw {
@@ -69,15 +62,10 @@ module.exports = function (defaultFuncs, api, ctx) {
 						if (resData.error) {
 							throw resData;
 						}
-
-						// We have to return the data unformatted unless we want to change it
-						// back in sendMessage.
 						return resData.payload.metadata[0];
 					})
 			);
 		}
-
-		// resolve all promises
 		Promise
 			.all(uploads)
 			.then(function (resData) {
@@ -88,14 +76,12 @@ module.exports = function (defaultFuncs, api, ctx) {
 				return callback(err);
 			});
 	}
-
-	function getUrl(url, callback) {
+        function getUrl(url, callback) {
 		const form = {
 			image_height: 960,
 			image_width: 960,
 			uri: url
 		};
-
 		defaultFuncs
 			.post(
 				"https://www.facebook.com/message_share_attachment/fromURI/",
@@ -106,12 +92,9 @@ module.exports = function (defaultFuncs, api, ctx) {
 			.then(function (resData) {
 				if (resData.error) {
 					return callback(resData);
-				}
-
-				if (!resData.payload) {
+				}				if (!resData.payload) {
 					return callback({ error: "Invalid url" });
 				}
-
 				callback(null, resData.payload.share_data.share_params);
 			})
 			.catch(function (err) {
@@ -119,13 +102,7 @@ module.exports = function (defaultFuncs, api, ctx) {
 				return callback(err);
 			});
 	}
-
 	function sendContent(form, threadID, isSingleUser, messageAndOTID, callback) {
-		// There are three cases here:
-		// 1. threadID is of type array, where we're starting a new group chat with users
-		//    specified in the array.
-		// 2. User is sending a message to a specific user.
-		// 3. No additional form params and the message goes to an existing group chat.
 		if (utils.getType(threadID) === "Array") {
 			for (let i = 0; i < threadID.length; i++) {
 				form["specific_to_list[" + i + "]"] = "fbid:" + threadID[i];
@@ -134,8 +111,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 			form["client_thread_id"] = "root:" + messageAndOTID;
 			log.info("sendMessage", "Sending message to multiple users: " + threadID);
 		} else {
-			// This means that threadID is the id of a user, and the chat
-			// is a single person chat
 			if (isSingleUser) {
 				form["specific_to_list[0]"] = "fbid:" + threadID;
 				form["specific_to_list[1]"] = "fbid:" + (ctx.i_userID || ctx.userID);
@@ -144,7 +119,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 				form["thread_fbid"] = threadID;
 			}
 		}
-
 		if (ctx.globalOptions.pageID) {
 			form["author"] = "fbid:" + ctx.globalOptions.pageID;
 			form["specific_to_list[1]"] = "fbid:" + ctx.globalOptions.pageID;
@@ -156,7 +130,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 			form["creator_info[profileURI]"] =
 				"https://www.facebook.com/profile.php?id=" + (ctx.i_userID || ctx.userID);
 		}
-
 		defaultFuncs
 			.post("https://www.facebook.com/messaging/send/", ctx.jar, form)
 			.then(utils.parseAndCheckLogin(ctx, defaultFuncs))
@@ -164,7 +137,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 				if (!resData) {
 					return callback({ error: "Send message failed." });
 				}
-
 				if (resData.error) {
 					if (resData.error === 1545012) {
 						log.warn(
@@ -178,7 +150,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 					}
 					return callback(resData);
 				}
-
 				const messageInfo = resData.payload.actions.reduce(function (p, v) {
 					return (
 						{
@@ -188,7 +159,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 						} || p
 					);
 				}, null);
-
 				return callback(null, messageInfo);
 			})
 			.catch(function (err) {
@@ -200,22 +170,17 @@ module.exports = function (defaultFuncs, api, ctx) {
 			});
 	}
 
-	function send(form, threadID, messageAndOTID, callback, isGroup) {
-		// We're doing a query to this to check if the given id is the id of
-		// a user or of a group chat. The form will be different depending
-		// on that.
+	function send(form, threadID, messageAndOTID, callback, isGroup) {		
 		if (utils.getType(threadID) === "Array") {
 			sendContent(form, threadID, false, messageAndOTID, callback);
 		} else {
-			if (utils.getType(isGroup) != "Boolean") {
-				// Removed the use of api.getUserInfo() in the old version to reduce account lockout
+			if (utils.getType(isGroup) != "Boolean") {				
 				sendContent(form, threadID, threadID.toString().length < 16, messageAndOTID, callback);
 			} else {
 				sendContent(form, threadID, !isGroup, messageAndOTID, callback);
 			}
 		}
 	}
-
 	function handleUrl(msg, form, callback, cb) {
 		if (msg.url) {
 			form["shareable_attachment[share_type]"] = "100";
@@ -223,7 +188,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 				if (err) {
 					return callback(err);
 				}
-
 				form["shareable_attachment[share_params]"] = params;
 				cb();
 			});
@@ -231,28 +195,23 @@ module.exports = function (defaultFuncs, api, ctx) {
 			cb();
 		}
 	}
-
 	function handleLocation(msg, form, callback, cb) {
 		if (msg.location) {
 			if (msg.location.latitude == null || msg.location.longitude == null) {
 				return callback({ error: "location property needs both latitude and longitude" });
 			}
-
 			form["location_attachment[coordinates][latitude]"] = msg.location.latitude;
 			form["location_attachment[coordinates][longitude]"] = msg.location.longitude;
 			form["location_attachment[is_current_location]"] = !!msg.location.current;
 		}
-
 		cb();
 	}
-
 	function handleSticker(msg, form, callback, cb) {
 		if (msg.sticker) {
 			form["sticker_id"] = msg.sticker;
 		}
 		cb();
 	}
-
 	function handleEmoji(msg, form, callback, cb) {
 		if (msg.emojiSize != null && msg.emoji == null) {
 			return callback({ error: "emoji property is empty" });
@@ -276,7 +235,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 		}
 		cb();
 	}
-
 	function handleAttachment(msg, form, callback, cb) {
 		if (msg.attachment) {
 			form["image_ids"] = [];
@@ -305,7 +263,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 			cb();
 		}
 	}
-
 	function handleMention(msg, form, callback, cb) {
 		if (msg.mentions) {
 			for (let i = 0; i < msg.mentions.length; i++) {
@@ -338,7 +295,6 @@ module.exports = function (defaultFuncs, api, ctx) {
 		}
 		cb();
 	}
-
 	return function sendMessage(msg, threadID, callback, replyToMessage, isGroup) {
 		typeof isGroup == "undefined" ? isGroup = null : "";
 		if (
