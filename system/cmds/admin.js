@@ -30,29 +30,29 @@ module.exports = {
   execute: async function({ api, event, args, translate, loadConfig }) {
     switch (args[0]) {
       case 'list':
-        api.sendMessage(config.admin.join('\n'), event.threadID, event.messageID);
+        api.chat(config.admin.join('\n'), event.threadID, event.messageID);
         break;
       case 'add':
-        if (args.length < 2) return api.sendMessage(translate('noId'), event.threadID, event.messageID);
+        if (args.length < 2) return api.chat(translate('noId'), event.threadID, event.messageID);
         config.admin.push(args[1]);
         fs.writeFileSync('config.json', JSON.stringify(config, null, 2));
-        api.sendMessage(translate('addSuccess'), event.threadID, event.messageID);
+        api.chat(translate('addSuccess'), event.threadID, event.messageID);
         await loadConfig();
         break;
       case 'del':
-        if (args.length < 2) return api.sendMessage(translate('noId'), event.threadID, event.messageID);
+        if (args.length < 2) return api.chat(translate('noId'), event.threadID, event.messageID);
         const index = config.admin.indexOf(args[1]);
         if (index !== -1) {
           config.admin.splice(index, 1);
           fs.writeFileSync('config.json', JSON.stringify(config, null, 2));
-          api.sendMessage(translate('delSuccess'), event.threadID, event.messageID);
+          api.chat(translate('delSuccess'), event.threadID, event.messageID);
           await loadConfig();
         } else {
-          api.sendMessage(translate('notAdmin'), event.threadID, event.messageID);
+          api.chat(translate('notAdmin'), event.threadID, event.messageID);
         }
         break;
       default:
-        api.sendMessage(translate('incorrectUsage'), event.threadID, event.messageID);
+        api.chat(translate('incorrectUsage'), event.threadID, event.messageID);
     }
   }
 };
