@@ -109,7 +109,7 @@ module.exports = function (defaultFuncs, api, ctx) {
 			}
 			form["specific_to_list[" + threadID.length + "]"] = "fbid:" + (ctx.i_userID || ctx.userID);
 			form["client_thread_id"] = "root:" + messageAndOTID;
-			log.info("sendMessage", "Sending message to multiple users: " + threadID);
+			log.info("chat", "Sending message to multiple users: " + threadID);
 		} else {
 			if (isSingleUser) {
 				form["specific_to_list[0]"] = "fbid:" + threadID;
@@ -135,22 +135,22 @@ module.exports = function (defaultFuncs, api, ctx) {
 			.then(utils.parseAndCheckLogin(ctx, defaultFuncs))
 			.then(function (resData) {
 				if (!resData) {
-					return callback({ error: "Send message failed." });
+					return callback({ error: "chat failed." });
 				}
 				if (resData.error) {
 					if (resData.error === 1545012) {
 						log.warn(
-							"sendMessage",
+							"chat",
 							"Got error 1545012. This might mean that you're not part of the conversation " +
 							threadID
 						);
 					}
 					else {
-						log.error("sendMessage", resData);
+						log.error("chat", resData);
 					}
 					return callback(resData);
 				}
-				const messageInfo = resData.payload.actions.reduce(function (p, v) {
+				const chatInfo = resData.payload.actions.reduce(function (p, v) {
 					return (
 						{
 							threadID: v.thread_fbid,
@@ -159,10 +159,10 @@ module.exports = function (defaultFuncs, api, ctx) {
 						} || p
 					);
 				}, null);
-				return callback(null, messageInfo);
+				return callback(null, chatInfo);
 			})
 			.catch(function (err) {
-				log.error("sendMessage", err);
+				log.error("chat", err);
 				if (utils.getType(err) == "Object" && err.error === "Not logged in.") {
 					ctx.loggedIn = false;
 				}
@@ -295,7 +295,7 @@ module.exports = function (defaultFuncs, api, ctx) {
 		}
 		cb();
 	}
-	return function sendMessage(msg, threadID, callback, replyToMessage, isGroup) {
+	return function chat(msg, threadID, callback, replyToMessage, isGroup) {
 		typeof isGroup == "undefined" ? isGroup = null : "";
 		if (
 			!callback &&
