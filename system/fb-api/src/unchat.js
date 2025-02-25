@@ -4,7 +4,7 @@ const utils = require("../utils");
 const log = require("npmlog");
 
 module.exports = function (defaultFuncs, api, ctx) {
-	return function unsendMessage(messageID, callback) {
+	return function unchat(messageID, callback) {
 		let resolveFunc = function () { };
 		let rejectFunc = function () { };
 		const returnPromise = new Promise(function (resolve, reject) {
@@ -40,7 +40,7 @@ module.exports = function (defaultFuncs, api, ctx) {
 				return callback();
 			})
 			.catch(function (err) {
-				log.error("unsendMessage", err);
+				log.error("unchat", err);
 				return callback(err);
 			});
 
