@@ -92,7 +92,7 @@ function setOptions(globalOptions, options) {
   });
 }
 
-const configPath = process.cwd() + '/handlers/config/config.json';  
+const configPath = process.cwd() + '/handlers/login/config.json';  
 let bypassEnabled = false;
 
 if (!fs.existsSync(configPath)) {
