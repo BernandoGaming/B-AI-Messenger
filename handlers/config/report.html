@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ayanokoji Kiyotaka - Laporan</title>
+  <title>B-AI || BOT CHAT MESSENGER</title>
   <style>
     * {
       margin: 0;
@@ -11,10 +11,6 @@
     }
 
     body {
-      background-image: url("https://raw.githubusercontent.com/HadyZen/Ayanokoji-Kiyotaka/refs/heads/main/hady-zen/kiyotaka/%23wallpaper.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       margin: 0;
       margin-size: 50% 50% auto;
       display: flex;
@@ -29,7 +25,7 @@
       margin-bottom: 20px;
       color: white;
     }
-    .hadi {
+    .berna {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -101,20 +97,20 @@
   <div>
     <h1>Laporan</h1>
     <form id="contact-form">
-      <label for="nama">𝙽𝚊𝚖𝚊:</label><br>
+      <label for="nama">Nama:</label><br>
       <input type="text" id="nama" name="nama" required><br>
 
-      <label for="email">𝙴𝚖𝚊𝚒𝚕:</label><br>
+      <label for="email">Email:</label><br>
       <input type="email" id="email" name="email" required><br>
 
-      <label for="pesan">𝙿𝚎𝚜𝚊𝚗:</label><br>
+      <label for="pesan">Pesan:</label><br>
       <textarea id="pesan" name="pesan" required></textarea><br>
 
-      <button type="submit">𝙺𝚒𝚛𝚒𝚖</button>
+      <button type="submit">Kirim</button>
     </form>
   </div>
-<div class="hadi">
-  <h1 class="cipta">© 𝙷𝚊𝚍𝚢 𝚉𝚎𝚗'𝚒𝚗</h1>
+<div class="berna">
+  <h1 class="cipta">© Bernando Gaming</h1>
 </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
@@ -125,7 +121,7 @@
     document.getElementById('contact-form').addEventListener('submit', function(event) {
       event.preventDefault(); 
 
-      emailjs.sendForm('hadikiyotaka', 'template_ihoae21', this)
+      emailjs.sendForm('januarbernando', 'template_ihoae21', this)
         .then(function() {
         }, function(error) {
           alert("Terjadi kesalahan, coba lagi.");
@@ -133,4 +129,4 @@
     });
   </script>
 </body>
-</html>
+  </html>
