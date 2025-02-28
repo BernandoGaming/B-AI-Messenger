@@ -1,24 +1,23 @@
-/* HADY ZEN'IN */
+let cooldowns = {};
 
-let hadi = {};
-function kuldown(id, cmd, cd) {
-    if (jeda(id, cmd, cd)) {
-        if (!hadi[id]) {
-            hadi[id] = {};
+function setCooldown(id, cmd, cd) {
+    if (isCooldownOver(id, cmd, cd)) {
+        if (!cooldowns[id]) {
+            cooldowns[id] = {};
         }
-        hadi[id][cmd] = Date.now();
-        return "hadi";
+        cooldowns[id][cmd] = Date.now();
+        return "set";
     } else {
-        return "pipi";
+        return "not yet";
     }
 }
 
-function jeda(id, cmd, cd) {
-    if (!hadi[id] || !hadi[id][cmd]) {
+function isCooldownOver(id, cmd, cd) {
+    if (!cooldowns[id] || !cooldowns[id][cmd]) {
         return true;
     }
-    const timePassed = (Date.now() - hadi[id][cmd]) / 1000; 
+    const timePassed = (Date.now() - cooldowns[id][cmd]) / 1000; 
     return timePassed >= cd;
 }
 
-module.exports = { kuldown };
+module.exports = { setCooldown };
