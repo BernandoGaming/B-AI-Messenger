@@ -246,44 +246,17 @@ function buildAPI(globalOptions, html, jar) {
             return;
             }
         });   
-
         const regions = [
-            {
-                code: "PRN",
-                name: "Pacific Northwest Region",
-                location: "Khu vực Tây Bắc Thái Bình Dương"
-            },
-            {
-                code: "LLA",
-                name: "Los Angeles Region",
-                location: "Los Angeles"
-            },
-            {
-                code: "FRA",
-                name: "Frankfurt",
-                location: "Frankfurt"
-            },
-            {
-                code: "SIN",
-                name: "Singapore",
-                location: "Singapore"
-            },
-            {
-                code: "NRT",
-                name: "Tokyo",
-                location: "Japan"
-            },
-            {
-                code: "HKG",
-                name: "Hong Kong",
-                location: "Hong Kong"
-            }
-        ];
+    {
+        code: "IDN",
+        name: "Indonesia",
+        location: "Indonesia"
+    }
+];
 
-        if (!region) {
-            region = ['prn',"sin","nrt","hkg","lla","fra"][Math.random()*6|0];
-
-        }
+if (!region) {
+    region = 'idn';
+}
         if (!mqttEndpoint) {
             mqttEndpoint = "wss://edge-chat.facebook.com/chat?region=" + region;
         }
