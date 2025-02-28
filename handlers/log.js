@@ -24,11 +24,11 @@ const logo = {
   cmds: `${colors.black}${time}${colors.reset} ${colors.magenta}${font.bold}🜲 CMDS: ${colors.reset}`, 
   message: `${colors.black}${time}${colors.reset} ${colors.blue}${font.bold}🜲 MESSAGE: ${colors.reset}`, 
   update: `${colors.black}${time}${colors.reset} ${colors.yellow}${font.bold}🜲 UPDATE: ${colors.reset}`, 
-  code: `█▀▄░▄▀▄ █\n█▀█░█▀█ █\n▀▀░░▀░▀ ▀`
+  logger: `█▀▄░▄▀▄ █\n█▀█░█▀█ █\n▀▀░░▀░▀ ▀`
 };
 
-function code(name) {
+function logger(name) {
   return `${colors.black}${time}${colors.reset} ${colors.blue}${font.bold}🜲 ${name.toUpperCase()}: ${colors.reset}`;
 };
 
-module.exports = { colors, font, logo, code };
+module.exports = { colors, font, logo, logger };
