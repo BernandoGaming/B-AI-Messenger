@@ -1,4 +1,14 @@
-const { time } = require("./time");
+let now = new Date();
+
+now.setHours(now.getHours() + 7);
+const hours = now.getHours();
+const minutes = now.getMinutes();
+const seconds = now.getSeconds();
+const year = now.getFullYear();
+const day = now.getDate();
+let month = now.getMonth() + 1;
+
+let time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} ${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
 
 const font = {
   bold: `\x1b[1m`,
