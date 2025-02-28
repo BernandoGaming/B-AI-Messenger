@@ -1,0 +1,243 @@
+       <!DOCTYPE html>
+       <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Ayanokoji Kiyotaka - Chatbot by Hady Zen</title>
+           <style>
+             body {
+               background-image: url("https://raw.githubusercontent.com/HadyZen/Ayanokoji-Kiyotaka/refs/heads/main/hady-zen/kiyotaka/%23wallpaper.png");
+               background-size: cover;
+               background-position: center;
+               background-repeat: no-repeat;
+               margin: 0;
+               height: 100vh;
+               font-size: 1rem; 
+               color: #f4f4f4;
+             }
+
+             #tabel {
+               background-color: #242424;
+               padding: 1rem; 
+               margin: 1rem auto; 
+               border-radius: 10px;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+               text-align: left;
+               color: white;
+               max-width: 90%;
+             }
+
+             section.anime-list {
+               display: flex;
+               gap: 0.5rem; 
+               padding: 0.5rem; 
+               background-color: black;
+               justify-content: center;
+             }
+
+             .hady {
+               padding: 0.5rem 1rem; 
+               font-size: 1rem; 
+               background-color: #242424;
+               color: white;
+               border: none;
+               min-width: 60px; 
+               min-height: 20px; 
+             }
+
+             .active {
+               background-color: black;
+             }
+
+             main {
+               text-align: center;
+               padding: 1rem; 
+             }
+
+             .roshidere {
+               font-size: 2rem; 
+               font-weight: bold;
+               color: #87CEEB;
+               animation: kujou 4s infinite;
+               text-shadow: 0 0 50px #87CEEB, 0 0 50px #87CEEB, 0 0 50px #87CEEB;
+             }
+
+             .waifu, .rikateki {
+               font-size: 1rem; 
+             }
+
+             .waifu {
+               background-color: #808080;
+               color: white;
+               border-radius: 100px;
+               margin: 4px; 
+               min-width: 10px;
+               min-height: 20px; 
+             }
+
+             .rikateki {
+               background-color: transparent;
+               color: white;
+               border: none;
+               font-size: 20px;
+             }
+
+             .alya {
+               background-color: black;
+               color: #fff;
+               padding: 0.5rem; 
+               text-align: center;
+             }
+
+             .hadi {
+               position: absolute;
+               bottom: 0;
+               left: 0;
+               right: 0;
+               text-align: center;
+               padding: 0.5rem; 
+             }
+            .button {
+          background-color: #3A414A;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          margin: 10px;
+          min-width: 120px;
+          min-height: 30px;
+          font-size: 16px;
+            }
+             .cipta {
+               background-color: transparent;
+               font-weight: bold;
+               font-size: 20px; 
+               color: #808080;
+             }
+
+             @keyframes kujou {
+               0%, 100% { transform: translateY(0); }
+               50% { transform: translateY(-20px); } 
+             }
+
+             img, video {
+               max-width: 100%;
+               height: auto;
+             }
+           </style>
+         </head>
+         <body>
+           <header class="alya">
+             <h2 class="roshidere">Ayanokoji Kiyotaka</h2>
+           </header>
+
+           <section class="anime-list">
+             <button class="hady" onclick="showContent('home')">𝐇𝐎𝐌𝐄</button>
+             <button class="hady" onclick="showContent('info')">𝐈𝐍𝐅𝐎</button>
+             <button class="hady" onclick="showContent('kontak')">𝐊𝐎𝐍𝐓𝐀𝐊</button>
+             <button class="hady" onclick="showContent('story')">𝐒𝐓𝐎𝐑𝐘</button>
+           </section>
+
+           <main id="content">
+             <div id="home" class="zen">
+               <img src="https://raw.githubusercontent.com/HadyZen/Ayanokoji-Kiyotaka/refs/heads/main/hady-zen/kiyotaka/%23ayanokoji.png" alt="Alya Kujou" style="max-width: 90%; height: auto;">
+               <h1>𝚂𝚎𝚕𝚊𝚖𝚊𝚝 𝚍𝚊𝚝𝚊𝚗𝚐!</h1>
+
+               <p style="font-size: 20px;" id="nebula"></p>
+               <audio controls autoplay loop style="width: 80%; height: 50px; margin: 10px auto;">
+                 <source src="https://raw.githubusercontent.com/HadyZen/Ayanokoji-Kiyotaka/refs/heads/main/hady-zen/kiyotaka/%23musik.mp3" type="audio/mpeg">
+               </audio>
+             </div>
+             <div id="info" class="zen">
+               <div id="tabel">
+                 <h2>𝗕𝗢𝗧 ♡</h2>
+                 <p style="font-size: 20px">
+                   𝚆𝚎𝚋𝚟𝚒𝚎𝚠: <button class="waifu" onclick="salinWeb()">𝚜𝚊𝚕𝚒𝚗</button><br>
+                   𝙲𝚘𝚘𝚔𝚒𝚎: <a href="https://raw.githubusercontent.com/HadyZen/Ayanokoji-Kiyotaka/refs/heads/main/hady-zen/kiyotaka/%23cookie.zip" target="_blank"> <button class="waifu">𝚍𝚘𝚠𝚗𝚕𝚘𝚊𝚍</button></a><br>
+                 </p>
+               </div>
+
+             </div>
+             <div id="kontak" class="zen">
+               <div id="tabel">
+                 <p style="font-size: 20px;" 𝙽𝚊𝚖𝚊: 𝙷𝚊𝚍𝚒 𝚙𝚛𝚊𝚗𝚊𝚝𝚊<br>
+                   𝙶𝚒𝚝𝚑𝚞𝚋: <a href="https://github.com/HadyZen" target="_blank"> <button class="rikateki">𝙷𝚊𝚍𝚢 𝚉𝚎𝚗</button></a><br>
+                   𝚆𝚑𝚊𝚝𝚜𝚊𝚙𝚙: <button class="rikateki" onclick="salin('081262260170')">𝟶𝟾𝟷𝟸𝟼𝟸𝟸𝟼𝟶𝟷𝟽𝟶</button> <br>
+                   𝙵𝚊𝚌𝚎𝚋𝚘𝚘𝚔: <a href="https://www.facebook.com/hady.zen.in" target="_blank"> <button class="rikateki">𝙷𝚊𝚍𝚢 𝚁𝚒𝚔𝚊𝚝𝚎𝚔𝚒</button></a><br>
+                 </p>
+               </div>
+      <button class="button" onclick="window.location.href = window.location.origin + '/laporan'">Laporkan bug</button>
+             </div>
+             <div id="story" class="zen">
+               <div id="tabel">
+                 <video controls style="display: block; margin: 0 auto; width: 90%; height: auto;">
+                   <source src="https://raw.githubusercontent.com/HadyZen/Ayanokoji-Kiyotaka/refs/heads/main/hady-zen/kiyotaka/%23status.mp4">
+                 </video>
+               </div>
+             </div>
+           </main>
+           <div class="hadi">
+             <h1 class="cipta">© 𝙷𝚊𝚍𝚢 𝚉𝚎𝚗'𝚒𝚗</h1>
+           </div>
+           <script>
+             const buttons = document.querySelectorAll('.hady');
+             function showContent(id) {
+               const contentSections = document.querySelectorAll('.zen');
+               contentSections.forEach(section => {
+                 section.style.display = 'none';
+               });
+               document.getElementById(id).style.display = 'block';
+             }
+             showContent('home');
+
+             let wle = Date.now();
+
+
+             buttons.forEach(button => {
+               button.addEventListener('click', () => {
+                 buttons.forEach(btn => btn.classList.remove('active'));
+                 button.classList.add('active');
+               });
+             });
+
+             function salinWeb() {
+               const tempInput = document.createElement('input');
+               tempInput.value = window.location.href;
+               document.body.appendChild(tempInput);
+
+               tempInput.select();
+               document.execCommand('copy');
+               document.body.removeChild(tempInput);
+             }
+
+             function salin(text) {
+               navigator.clipboard.writeText(text)
+               .then(() => {
+                 document.querySelector('.rikateki').classList.add('copied');
+                 setTimeout(() => {
+                   document.querySelector('.rikateki').classList.remove('copied');
+                 }, 1000);
+               })
+               .catch(err => {
+                 console.error('gagal menyalin: ', err);
+               });
+             }
+             function nebula() {
+               const sekarang = new Date();
+               const jam = sekarang.getHours();
+
+               let waktu;
+               if (jam >= 5 && jam < 10) {
+                 waktu = "𝚙𝚊𝚐𝚒";
+               } else if (jam >= 10 && jam < 15) {
+                 waktu = "𝚜𝚒𝚊𝚗𝚐";
+               } else if (jam >= 15 && jam < 18) {
+                 waktu = "𝚜𝚘𝚛𝚎";
+               } else {
+                 waktu = "𝚖𝚊𝚕𝚊𝚖";
+               }
+               const hady = `𝚂𝚎𝚕𝚊𝚖𝚊𝚝 ${waktu}. 𝙿𝚎𝚛𝚔𝚎𝚗𝚊𝚕𝚔𝚊𝚗 𝚗𝚊𝚖𝚊 𝚜𝚊𝚢𝚊 𝙰𝚢𝚊𝚗𝚘𝚔𝚘𝚓𝚒 𝙺𝚒𝚢𝚘𝚝𝚊𝚔𝚊, 𝚜𝚊𝚢𝚊 𝚝𝚒𝚍𝚊𝚔 𝚖𝚎𝚖𝚒𝚕𝚒𝚔𝚒 𝚋𝚊𝚔𝚊𝚝 𝚊𝚙𝚊𝚙𝚞𝚗.`;
+               document.getElementById('nebula').textContent = hady;
+             }
+             nebula();
+           </script>
+         </body>
+       </html>

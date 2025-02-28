@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayanokoji Kiyotaka - Laporan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url("https://raw.githubusercontent.com/HadyZen/Ayanokoji-Kiyotaka/refs/heads/main/hady-zen/kiyotaka/%23wallpaper.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      margin-size: 50% 50% auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+    }
+    .hadi {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+     .cipta {
+      background-color: transparent;
+      font-weight: bold;
+      font-size: 20px;
+      color: #808080;
+     }
+    form {
+      background-color: #3A414A;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    label {
+      font-size: 1.1em;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    button {
+      background-color: #4A90E2;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #357ABD;
+    }
+
+    @media (max-width: 600px) {
+      form {
+        padding: 20px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Laporan</h1>
+    <form id="contact-form">
+      <label for="nama">𝙽𝚊𝚖𝚊:</label><br>
+      <input type="text" id="nama" name="nama" required><br>
+
+      <label for="email">𝙴𝚖𝚊𝚒𝚕:</label><br>
+      <input type="email" id="email" name="email" required><br>
+
+      <label for="pesan">𝙿𝚎𝚜𝚊𝚗:</label><br>
+      <textarea id="pesan" name="pesan" required></textarea><br>
+
+      <button type="submit">𝙺𝚒𝚛𝚒𝚖</button>
+    </form>
+  </div>
+<div class="hadi">
+  <h1 class="cipta">© 𝙷𝚊𝚍𝚢 𝚉𝚎𝚗'𝚒𝚗</h1>
+</div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init('c0akXFvxMmMKUoiWf');
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+      emailjs.sendForm('hadikiyotaka', 'template_ihoae21', this)
+        .then(function() {
+        }, function(error) {
+          alert("Terjadi kesalahan, coba lagi.");
+        });
+    });
+  </script>
+</body>
+</html>
