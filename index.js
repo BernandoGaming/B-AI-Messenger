@@ -1,9 +1,7 @@
-/* HADY ZEN'IN */
-
 const { spawn } = require('child_process');
 
-function hady() {
-  const child = spawn("node Ayanokoji.js", {
+function start() {
+  const child = spawn("node bot.js", {
     cwd: __dirname,
     stdio: "inherit",
     shell: true
@@ -11,8 +9,8 @@ function hady() {
 
   child.on("close", (code) => {
     if (code == 2) {
-      hady(); 
+      start(); 
   }
  });
 };
-hady();
+start();
