@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=7,8,edge" />
+    <title>B-AI || BOT CHAT MESSENGER</title>
+    <style type="text/css" media="all">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Sans-Serif, Comic Sans MS;
+      }
+      
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 5px 3px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+      }
+      
+      .logo {
+        font-size: 2em;
+        user-select: none;
+        border-bottom: 2px solid #000;
+      }
+      
+      .navigation a {
+        position: relative;
+        font-size: 1.1em;
+        color: #000;
+        text-decoration: none;
+        font-weight: 500;
+        margin-left: 20px;
+        cursor: pointer;
+      }
+      .navigation a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 3px;
+        background: #000;
+        border-radius: 5px;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform .5s;
+      }
+      .navigation a:hover::after {
+        transform-origin: left;
+        transform: scaleX(1);
+      }
+      
+      .b-card {
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 32px;
+        box-shadow: 5px 5px 5px 3px rgba(0,0,0,0.5);
+        width: 100%;
+        max-width: 500px;
+        backdrop-filter: blur(5px);
+      }
+      .titleB-card {
+        padding: 10px;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #000;
+      }
+      
+      .poster1 {
+        width: 100%;
+      }
+      
+      .body {
+        margin-top: 100px;
+        margin-bottom: 50px;
+      }
+      
+      .contact {
+        margin-top: 500px;
+        margin-bottom: 50px;
+      }
+      
+      .section {
+        display: none;
+      }
+      
+      .section.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h2 class="logo">B-AI</h2>
+      <nav class="navigation">
+        <a onclick="showSection('home')">home</a>
+        <a onclick="showSection('about')">about</a>
+        <a onclick="showSection('contact')">contact</a>
+      </nav>
+    </header>
+    <div class="body">
+      <div id="home" class="section active">
+        <div class="b-card">
+          <div class="titleB-card">
+            <h2>B-AI Messenger</h2>
+            <h4>Bernando-Artificial Intelligence</h4>
+          </div>
+          <p>Hello lovers, B-AI is a bot messenger by Bernando Gaming</p>
+        </div>
+      </div>
+      <div id="about" class="section">
+        <div class="b-card">
+          <div class="titleB-card">
+            <h2>About B-AI</h2>
+          </div>
+          <p>B-AI is an innovative chatbot designed to assist you with various tasks and provide entertainment.</p>
+        </div>
+      </div>
+      <div id="contact" class="section">
+        <div class="b-card">
+          <div class="titleB-card">
+            <h2>Contact</h2>
+          </div>
+          <p>Email: bernando3018yt@gmail.com</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+          section.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active');
+      }
+    </script>
+  </body>
+</html>
