@@ -24,7 +24,7 @@ const logo = {
   cmds: `${colors.black}${time}${colors.reset} ${colors.magenta}${font.bold}🜲 CMDS: ${colors.reset}`, 
   message: `${colors.black}${time}${colors.reset} ${colors.blue}${font.bold}🜲 MESSAGE: ${colors.reset}`, 
   update: `${colors.black}${time}${colors.reset} ${colors.yellow}${font.bold}🜲 UPDATE: ${colors.reset}`, 
-  code: ``
+  code: `█▀▄░▄▀▄ █\n█▀█░█▀█ █\n▀▀░░▀░▀ ▀`
 };
 
 function code(name) {
