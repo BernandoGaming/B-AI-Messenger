@@ -1,32 +1,34 @@
-/* HADY ZEN'IN */
+const { time } = require("./time");
 
-const { waktu } = require("./waktu");
 const font = {
   bold: `\x1b[1m`,
   italic: `\x1b[3m`
 };
-const warna = {
+
+const colors = {
   reset: `\x1b[0m`, 
-  hitam: `\x1b[38;5;240m`,
-  merah: `\x1b[31m`,
-  hijau: `\x1b[32m`,
-  kuning: `\x1b[33m`,
-  biru: `\x1b[34m`,
+  black: `\x1b[38;5;240m`,
+  red: `\x1b[31m`,
+  green: `\x1b[32m`,
+  yellow: `\x1b[33m`,
+  blue: `\x1b[34m`,
   magenta: `\x1b[35m`,
   cyan: `\x1b[36m`,
-  putih: `\x1b[37m`
-};
-const logo = {
-  error: `${warna.hitam}${waktu}${warna.reset} ${warna.merah}${font.bold}🜲 ERROR: ${warna.reset}`, 
-  login: `${warna.hitam}${waktu}${warna.reset} ${warna.hijau}${font.bold}🜲 LOGIN: ${warna.reset}`, 
-  info: `${warna.hitam}${waktu}${warna.reset} ${warna.cyan}${font.bold}🜲 INFO: ${warna.reset}`, 
-  cmds: `${warna.hitam}${waktu}${warna.reset} ${warna.magenta}${font.bold}🜲 CMDS: ${warna.reset}`, 
-  pesan: `${warna.hitam}${waktu}${warna.reset} ${warna.biru}${font.bold}🜲 PESAN: ${warna.reset}`, 
-  update: `${warna.hitam}${waktu}${warna.reset} ${warna.kuning}${font.bold}🜲 UPDATE: ${warna.reset}`, 
-  ayanokoji: `▄▀█ █▄█ ▄▀█ █▄ █ █▀█ █▄▀ █▀█  █ █\n█▀█  █  █▀█ █ ▀█ █▄█ █ █ █▄█ ▄█ █`
-};
-function ayanokoji(nama) {
-  return `${warna.hitam}${waktu}${warna.reset} ${warna.biru}${font.bold}🜲 ${nama.toUpperCase()}: ${warna.reset}`;
+  white: `\x1b[37m`
 };
 
-module.exports = { warna, font, logo, ayanokoji };
+const logo = {
+  error: `${colors.black}${time}${colors.reset} ${colors.red}${font.bold}🜲 ERROR: ${colors.reset}`, 
+  login: `${colors.black}${time}${colors.reset} ${colors.green}${font.bold}🜲 LOGIN: ${colors.reset}`, 
+  info: `${colors.black}${time}${colors.reset} ${colors.cyan}${font.bold}🜲 INFO: ${colors.reset}`, 
+  cmds: `${colors.black}${time}${colors.reset} ${colors.magenta}${font.bold}🜲 CMDS: ${colors.reset}`, 
+  message: `${colors.black}${time}${colors.reset} ${colors.blue}${font.bold}🜲 MESSAGE: ${colors.reset}`, 
+  update: `${colors.black}${time}${colors.reset} ${colors.yellow}${font.bold}🜲 UPDATE: ${colors.reset}`, 
+  code: ``
+};
+
+function code(name) {
+  return `${colors.black}${time}${colors.reset} ${colors.blue}${font.bold}🜲 ${name.toUpperCase()}: ${colors.reset}`;
+};
+
+module.exports = { colors, font, logo, code };
